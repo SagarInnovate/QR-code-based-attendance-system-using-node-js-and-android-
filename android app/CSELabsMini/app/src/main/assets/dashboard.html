@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Blank Page - Brand</title>
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/Nunito.css" />
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="./assets/css/untitled.css" />
+    <!-- Include SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- Your other HTML content -->
+
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Your other script tags -->
+
+
+    <script>
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+                    <div class="container-fluid">
+                        <strong>CSE LABS</strong>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown no-arrow"></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" id="or_img" height="1em" onclick="Android.openScannerActivity()" viewBox="0 0 24 24"
+                                fill="none" style="width: 7rem; height: auto">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9 3H3V9H5V5H9V3ZM3 21V15H5V19H9V21H3ZM15 3V5H19V9H21V3H15ZM19 15H21V21H15V19H19V15ZM7 7H11V11H7V7ZM7 13H11V17H7V13ZM17 7H13V11H17V7ZM13 13H17V17H13V13Z"
+                                    fill="currentColor"></path>
+                            </svg>
+
+                            <strong class="mt-5" id="lab_text">You are Currently in Lab: <span class="b" id="lab_details"></span></strong>
+                        </div>
+                        <div class="col-md-12" style="text-align: center">
+                            <button onclick="Android.openScannerActivity()" id="entry" class="btn btn-primary btn-sm" type="button">
+                                Scan OR
+                            </button>
+
+                            <button onclick="lab_exit()" id="exit" class="btn mt-3 btn-primary btn-sm" type="button">
+                                Exit Lab
+                            </button>
+
+                            <p id="or">or</p>
+                            <div  id="accordion-1" class="accordion" role="tablist">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" role="tab">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#accordion-1 .item-1" aria-expanded="false"
+                                            aria-controls="accordion-1 .item-1">
+                                            Select LAB No
+                                        </button>
+                                    </h2>
+                                    <div class="accordion-collapse collapse item-1 item-1" role="tabpanel"
+                                        data-bs-parent="#accordion-1">
+                                        <div class="accordion-body">
+                                            <form method="post" class="user">
+                                                <div class="mb-3">
+                                                    <select class="form-select form-select" name="department">
+                                                        <optgroup label="Select Department">
+                                                            <option value="CSE" selected>CSE</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <select class="form-select form-select" name="lab_no">
+                                                        <optgroup label="Select Lab">
+                                                            <option value="1" selected>Lab 1</option>
+                                                            <option value="2">Lab 2</option>
+                                                            <option value="3">Lab 3</option>
+                                                            <option value="4">Lab 4</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-primary d-block w-100" type="submit">
+                                                        Send
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <hr />
+                </div>
+                <div class="container-fluid">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Your Lab Entries</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="dataTable-1" role="grid"
+                                aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>sr no</th>
+                                            <th>lab no</th>
+                                            <th>date</th>
+                                            <th>in time</th>
+                                            <th>out time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot>
+                                        <tr></tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+
+                    <div class="text-center my-auto copyright">
+                        <span>Copyright©2023-24 | Developed by sagar </span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bs-init.js"></script>
+    <script src="./assets/js/theme.js"></script>
+</body>
+<script>
+ var button_entry=document.getElementById('entry');
+    var button_exit=document.getElementById('exit');
+    var accordion_div=document.getElementById('accordion-1');
+    var dis_text=document.getElementById('lab_text');
+    var or=document.getElementById('or');
+    var qr_img=document.getElementById('or_img');
+
+    function intial_fun(){
+
+ 
+  
+    if (localStorage.getItem('isEntry')) {
+        let lab_details=localStorage.getItem('lab_details');
+    button_exit.style.display='inline';
+    dis_text.style.display='block';
+    qr_img.style.display='none';
+    accordion_div.style.display='none';
+    button_entry.style.display='none';
+    or.style.display='none';
+    document.getElementById('lab_details').innerText=lab_details;
+
+} else {
+    console.log('entry is not defined');
+    button_exit.style.display='none';
+    dis_text.style.display='none';
+}
+}
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document
+            .querySelector("form.user")
+            .addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Get form data
+                let department = document.querySelector('[name="department"]').value;
+                let lab_no = document.querySelector('[name="lab_no"]').value;
+
+                // Call the function to handle the form submission with Fetch
+                enterInLab(department, lab_no);
+            });
+
+  display_table();
+    });
+
+    function enterInLab(department, lab_no) {
+    let currentDateTime = new Date();
+    let PRN = localStorage.getItem("PRN");
+    let currentIST = currentDateTime.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    fetch("https://mini.growmediax.com/api/entries", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            prn: PRN,
+            date: currentDateTime.toISOString().split("T")[0],
+            time_in: currentIST,
+            // initially blank
+            lab_no: lab_no,
+            department: department,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle the response from the server
+            console.log(data);
+
+            if (data.success) {
+                localStorage.setItem('isEntry', true);
+                localStorage.setItem('lab_details',data.msg)
+                intial_fun();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Entry Successful!',
+                    text: 'You have successfully entered the lab.',
+                    confirmButtonText: 'OK'
+                }).then(()=>{
+location.reload();
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Entry Failed!',
+                    text: data.message || 'An error occurred. Please try again.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'An error occurred. Please try again later.',
+                confirmButtonText: 'OK'
+            });
+        });
+
+}
+
+
+
+function display_table(){
+    var prn = localStorage.getItem("PRN");
+        fetch("https://mini.growmediax.com/api/entries?prn=" + prn)
+            .then((response) => response.json())
+            .then((data) => {
+                data.reverse();
+
+                const dataTable = document
+                    .getElementById("dataTable")
+                    .getElementsByTagName("tbody")[0];
+                let i = 0;
+                data.forEach((item) => {
+                    i = i + 1;
+                    const row = dataTable.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5 = row.insertCell(4);
+
+                    var date = new Date(item.date);
+                    cell1.innerHTML = i;
+                    cell2.innerHTML = item.department + "-" + item.lab_no;
+                    cell3.innerHTML = date.toDateString();
+                    cell4.innerHTML = item.time_in;
+                    cell5.innerHTML = item.time_out;
+                });
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+}function enterInLab2(department, lab_no) {
+    let currentDateTime = new Date();
+    let PRN = localStorage.getItem("PRN");
+    let currentIST = currentDateTime.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    fetch("https://mini.growmediax.com/api/entries", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            prn: PRN,
+            date: currentDateTime.toISOString().split("T")[0],
+            time_in: currentIST,
+            lab_no: lab_no,
+            department: department,
+        }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        // Handle the response from the server
+        console.log(data);
+
+        // Reload the page after the API call
+        location.reload();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'An error occurred. Please try again later.',
+            confirmButtonText: 'OK'
+        });
+    });
+}
+
+
+function lab_exit(){
+    let currentDateTime = new Date();
+    let PRN = localStorage.getItem("PRN");
+    let currentIST = currentDateTime.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    fetch("https://mini.growmediax.com/api/exitLab", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+           time_out:currentIST,
+           prn: PRN,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle the response from the server
+            console.log(data);
+
+            if (data.success) {
+                localStorage.removeItem('isEntry');
+                intial_fun();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Exit Successful!',
+                    text: 'You have successfully Exit from lab.',
+                    confirmButtonText: 'OK'
+                }).then(()=>{
+location.reload();
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Exit Failed!',
+                    text: data.message || 'An error occurred. Please try again.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'An error occurred. Please try again later.',
+                confirmButtonText: 'OK'
+            });
+        });
+
+
+
+}
+
+intial_fun();
+</script>
+
+</html>

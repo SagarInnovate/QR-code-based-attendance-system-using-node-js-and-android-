@@ -1,0 +1,143 @@
+
+
+
+
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dashboard - Brand</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/Font%20Awesome%205%20Pro.css">
+    <link rel="stylesheet" href="/assets/css/Nunito.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/features-modern-1.css">
+    <link rel="stylesheet" href="/assets/css/features-modern.css">
+    <link rel="stylesheet" href="/assets/css/features-v2.css">
+    <link rel="stylesheet" href="/assets/css/help-ask-question.css">
+    <link rel="stylesheet" href="/assets/css/hero-v1.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css">
+    <link rel="stylesheet" href="/assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+                    <div class="container-fluid"><strong>CSE LABS</strong>
+                        <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center"><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#" style="width: auto;padding-left: 40px;padding-right: 40px;margin-right: 12px;background: #60dd49;">Print</a><a class="btn btn-primary btn-sm d-none d-sm-inline-block bg-danger" role="button" href="#" style="padding-left: 40px;padding-right: 40px;">Logout</a></div>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Dashboard</h3>
+                        <div>
+                            <form action="/lab/search" method="GET">
+                            <div class="row form-group">
+                              
+                                <div class="col-sm-6" style="width: 423.703px;"><input class="form-control-sm form-control" type="search" name="query" aria-controls="dataTable" placeholder="Search Student by Name"></div>
+                                <div class="col-sm-4" style="width: auto;"><button type="submit" class="btn btn-primary btn-sm d-flex align-items-center" ><i class="fas fa-search text-white-50 fa-sm" style="font-size: 13px;"></i><span class="ml-1">search</span></a></div>
+                          
+                            </div>
+                        </form>
+                      
+                        </div>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <div class="row d-xxl-flex">
+                                <div class="col d-md-flex d-lg-flex justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center" style="width: auto;">
+                                    <form  action="/lab/filter" method="GET" class="d-inline-flex d-xxl-flex" style="text-align: right;width: 100%;">
+                                        <div class="d-lg-flex d-xxl-flex justify-content-around align-items-center justify-content-lg-center align-items-lg-center align-items-xxl-center" style="width: 100%;">
+                                            <div class="text-start d-xxl-flex flex-grow-1 align-items-xxl-center" style="padding-left: 0px;margin-right: 10px;"><label class="form-label fs-6 fw-bold form-label form-label form-label" for="dateInput">Date:</label><input id="dateInput" name="date" class="form-control form-control-sm form-control form-control form-control" type="date" style="width: 100%;" /></div>
+                                            <div class="text-start d-xxl-flex flex-grow-1 align-items-xxl-center" style="margin-right: 10px;"><label class="form-label fs-6 fw-bold form-label form-label form-label" for="select1">Department: </label><select name="department" id="select1" class="form-select form-select-sm form-select form-select form-select" style="padding: 0.5625rem 1rem; width: 100%;">
+                                                    <optgroup label="select Department From Below List">
+                                                        <option value="CSE" selected>CSE</option>
+                                                      
+                                                    </optgroup>
+                                                </select></div>
+                                            <div class="text-start d-xxl-flex flex-grow-1 align-items-xxl-center" style="padding-left: 0px;margin-right: 10px;"><label class="form-label fs-6 fw-bold form-label form-label form-label" for="select2">Year:</label><select name="year" id="select2" class="form-select form-select-sm form-select form-select form-select" style="padding: 0.5625rem 1rem; width: 100%;">
+                                                    <optgroup label="Select Year From Below List">
+                                                        <option value="" disabled selected>Select Year</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </optgroup>
+                                                </select></div>
+                                            <div class="text-start d-xxl-flex flex-grow-1 align-items-xxl-center"><label class="form-label fs-6 fw-bold form-label form-label form-label" for="select3">Batch:</label><select name="batch" id="select3" class="form-select form-select-sm form-select form-select form-select" style="padding: 0.5625rem 1rem; width: 100%;">
+                                                    <optgroup label="Select Batch">
+                                                        <option value="" disabled selected>Select Batch</option>
+                                                        <option value="T1">T1</option>
+                                                        <option value="T2">T2</option>
+                                                        <option value="T3">T3</option>
+                                                        <option value="T4">T4</option>
+                                                    </optgroup>
+                                                </select></div>
+                                                
+                                            <div class="text-start d-xxl-flex flex-grow-1 align-items-xxl-center" style="padding-left: 0px;margin-left: 10px;"><label class="form-label fs-6 fw-bold form-label form-label form-label" for="numberInput">Roll No:</label><input name="roll_no" id="numberInput" class="form-control form-control-sm form-control form-control form-control" type="number" aria-controls="dataTable" placeholder="Enter Student Roll No" style="width: 80%;" /></div>
+                                        </div>
+                                  
+                                </div>
+                                <div class="col-auto d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center align-items-lg-center justify-content-xl-center align-items-xl-center" style="width: inherit;"><button class="btn btn-primary btn-sm d-flex align-items-center" type="submit" ><span class="ml-1">Filter</span></a></div>
+                            </form>  </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Name</th>
+                                            <th>Date</th>
+                                            <th>Time in</th>
+                                            <th>Time out</th>
+                                            <th>Department</th>
+                                            <th>Year</th>
+                                            <th>Roll no</th>
+                                            <th>Batch</th>
+                                            <th>Phone</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let serialNumber = 1; %>
+                                        <% data.reverse().forEach(entry => { %>
+                                            <tr>
+                                                <td><%= serialNumber++ %></td>
+                                                <td><%= entry.name %></td>
+                                                <td><%= entry.date.toDateString() %></td>
+                                                <td><%= entry.time_in %></td>
+                                                <td><%= entry.time_out %></td>
+                                                <td><%= entry.department %></td>
+                                                <td><%= entry.year %></td>
+                                                <td><%= entry.roll_no %></td>
+                                                <td><%= entry.batch %></td>
+                                                <td><%= entry.phone %></td>
+                                            </tr>
+                                        <% }); %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr></tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2023</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/theme.js"></script>
+</body>
+
+</html>

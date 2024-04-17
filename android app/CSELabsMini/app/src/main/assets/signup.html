@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register - Brand</title>
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/Nunito.css">
+    <link rel="stylesheet" href="./assets/css/untitled.css">
+    <script>
+
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        if(isLoggedIn=='true'){
+            window.location.href='dashboard.html'
+        }
+        
+        </script>
+</head>
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-flex">
+                        <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;./assets/img/dogs/image2.jpeg&quot;);"></div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4">Create an Account!</h4>
+                            </div>
+                            <form class="user" >
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Enter Your Name" name="name" required="">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="number" id="exampleLastName" placeholder="Enter PRN No" name="prn"  required="">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="number" id="exampleFirstName-1" placeholder="Enter Your Roll No" name="roll_no" required="">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="number" id="exampleLastName-1" placeholder="Enter Phone No" name="phone"  required="">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm mb-3 mb-sm-0">
+                                        <select class="form-select form-control form-control-user" placeholder="Enter Your Roll No" name="department" required="">
+                                            <option value="" selected="">Select Department</option>
+                                            <option value="CSE">CSE</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm mb-3 mb-sm-0">
+                                        <select class="form-select form-control form-control-user" placeholder="Enter Your Roll No" name="year" required="">
+                                            <option value="" selected="">Select Year</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm mb-3 mb-sm-0">
+                                        <select class="form-select form-control form-control-user" placeholder="Enter Your Roll No" name="batch" required="">
+                                            <option value="" selected="">Batch</option>
+                                            <option value="T1">T1</option>
+                                            <option value="T2">T2</option>
+                                            <option value="T3">T3</option>
+                                            <option value="T4">T4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Password" name="password" required="">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_repeat" required="">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button>
+                                <hr>
+                                <hr>
+                            </form>
+                            <div class="text-center"><a class="small" href="login.html">Already Signed Up? Login!</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bs-init.js"></script>
+    <script src="./assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form.user').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Your login function
+            signup();
+        });
+    });
+
+        function signup() {
+            const name = document.getElementById('exampleFirstName').value;
+            const prn = document.getElementById('exampleLastName').value;
+            const roll_no = document.getElementById('exampleFirstName-1').value;
+            const phone = document.getElementById('exampleLastName-1').value;
+            const department = document.querySelector('[name="department"]').value;
+            const year = document.querySelector('[name="year"]').value;
+            const batch = document.querySelector('[name="batch"]').value;
+            const password = document.getElementById('examplePasswordInput').value;
+            const repeatPassword = document.getElementById('exampleRepeatPasswordInput').value;
+
+         
+            // Client-side password validation
+            if (password !== repeatPassword) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Password Mismatch',
+                    text: 'Passwords do not match. Please re-enter.',
+                    confirmButtonText: 'OK'
+                });
+                return false; // Prevent form submission
+            }
+
+            // Simulate a signup request
+            fetch('https://mini.growmediax.com/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name,
+                    prn,
+                    roll_no,
+                    phone,
+                    department,
+                    year,
+                    batch,
+                    password,
+                }),
+                
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    console.log(data);
+
+                    // Show SweetAlert2 alert based on the server response
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Signup Successful!',
+                            text: 'You can now login with your credentials.',
+                            confirmButtonText: 'OK'
+                        });
+
+                        setTimeout(() => {
+                            window.location.href='login.html'
+                        }, 2000);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Signup Failed!',
+                            text: data.message || 'An error occurred. Please try again.',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'An error occurred. Please try again later.',
+                        confirmButtonText: 'OK'
+                    });
+                });
+
+            // Prevent the form from submitting
+            return false;
+        }
+    </script>
+</body>
+
+</html>

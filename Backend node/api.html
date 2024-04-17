@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert Data Using AJAX</title>
+</head>
+<body>
+    <h1>Insert Data into Entries Table</h1>
+    <form id="entryForm">
+        <label for="prn">PRN:</label>
+        <input type="text" id="prn" name="prn" required>
+        <br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <br>
+        <label for="time_in">Time In:</label>
+        <input type="time" id="time_in" name="time_in" required>
+        <br>
+        <label for="time_out">Time Out:</label>
+        <input type="time" id="time_out" name="time_out" required>
+        <br>
+        <label for="lab_no">Lab Number:</label>
+        <input type="text" id="lab_no" name="lab_no" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="responseMessage"></div>
+
+    <script>
+        document.getElementById('entryForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = {
+                prn: document.getElementById('prn').value,
+                date: document.getElementById('date').value,
+                time_in: document.getElementById('time_in').value,
+                time_out: document.getElementById('time_out').value,
+                lab_no: document.getElementById('lab_no').value
+            };
+
+            fetch('http://localhost:3000/api/entries', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('responseMessage').textContent = data;
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById('responseMessage').textContent = 'Failed to insert data.';
+            });
+        });
+    </script>
+</body>
+</html>

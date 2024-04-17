@@ -1,0 +1,384 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.h1, h1 {
+  font-size: calc(1.30313rem + .6375vw);
+}
+
+@media (min-width:1200px) {
+  .h1, h1 {
+    font-size: 1.78125rem;
+  }
+}
+
+.h4, h4 {
+  font-size: 1.07813rem;
+}
+
+@media (min-width:1200px) {
+  .h4, h4 {
+    font-size: 1.07812rem;
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+img, svg {
+  vertical-align: middle;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+  width: 100%;
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width:576px) {
+  .container, .container-sm {
+    max-width: 540px;
+  }
+}
+
+@media (min-width:768px) {
+  .container, .container-md, .container-sm {
+    max-width: 720px;
+  }
+}
+
+@media (min-width:992px) {
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 960px;
+  }
+}
+
+@media (min-width:1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width:1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1140px;
+  }
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-.5 * var(--bs-gutter-x));
+  margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-top: var(--bs-gutter-y);
+}
+
+.col {
+  flex: 1 0 0%;
+}
+
+@media (min-width:768px) {
+  .col-md-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+}
+
+@media (min-width:992px) {
+  .col-lg-5 {
+    flex: 0 0 auto;
+    width: 41.66667%;
+  }
+}
+
+@media (min-width:992px) {
+  .col-lg-7 {
+    flex: 0 0 auto;
+    width: 58.33333%;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: .3em .5em;
+  font-size: 82%;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+}
+
+.overflow-hidden {
+  overflow: hidden!important;
+}
+
+.d-block {
+  display: block!important;
+}
+
+.position-relative {
+  position: relative!important;
+}
+
+.align-items-center {
+  align-items: center!important;
+}
+
+.mx-auto {
+  margin-right: auto!important;
+  margin-left: auto!important;
+}
+
+.mt-0 {
+  margin-top: 0!important;
+}
+
+.mt-3 {
+  margin-top: 1rem!important;
+}
+
+.mt-5 {
+  margin-top: 3rem!important;
+}
+
+.mb-2 {
+  margin-bottom: .5rem!important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem!important;
+}
+
+.px-2 {
+  padding-right: .5rem!important;
+  padding-left: .5rem!important;
+}
+
+.py-1 {
+  padding-top: .25rem!important;
+  padding-bottom: .25rem!important;
+}
+
+.py-5 {
+  padding-top: 3rem!important;
+  padding-bottom: 3rem!important;
+}
+
+.pb-3 {
+  padding-bottom: 1rem!important;
+}
+
+.ps-4 {
+  padding-left: 1.5rem!important;
+}
+
+.fw-bold {
+  font-weight: 600!important;
+}
+
+.text-center {
+  text-align: center!important;
+}
+
+.text-primary {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;
+}
+
+.text-success {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-success-rgb),var(--bs-text-opacity))!important;
+}
+
+.text-info {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-info-rgb),var(--bs-text-opacity))!important;
+}
+
+.text-orange {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-orange-rgb),var(--bs-text-opacity))!important;
+}
+
+.text-muted {
+  --bs-text-opacity: 1;
+  color: #8a90a2!important;
+}
+
+.rounded-pill {
+  border-radius: 50rem!important;
+}
+
+@media (min-width:576px) {
+  .mt-sm-5 {
+    margin-top: 3rem!important;
+  }
+}
+
+@media (min-width:576px) {
+  .ps-sm-5 {
+    padding-left: 3rem!important;
+  }
+}
+
+@media (min-width:992px) {
+  .mt-lg-0 {
+    margin-top: 0!important;
+  }
+}
+
+.badge-soft-primary {
+  background-color: rgba(0,85,255,.12);
+  color: #05f!important;
+}
+
+.bg-soft-primary {
+  background-color: rgba(0,85,255,.12)!important;
+}
+
+.bg-soft-success {
+  background-color: rgba(60,210,120,.12)!important;
+}
+
+.bg-soft-info {
+  background-color: rgba(23,162,184,.12)!important;
+}
+
+.bg-soft-orange {
+  background-color: rgba(255,120,75,.12)!important;
+}
+
+.row > * {
+  position: relative;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0;
+  font-family: "Be Vietnam Pro",sans-serif;
+  color: #343a40;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.rounded-lg {
+  border-radius: .5rem;
+}
+
+.icon {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon.icon-with-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon > svg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.icon-xs > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon[class*=text-] > svg [fill]:not([fill=none]) {
+  fill: currentColor!important;
+}
+
+.avatar-sm {
+  height: 3rem;
+  width: 3rem;
+}
+
+.features-1 .img-content {
+  position: relative;
+}
+
+.features-1 .img-content::before {
+  content: "";
+  background: linear-gradient(rgba(255,120,75,.1) 0,rgba(255,120,75,.15) 100%);
+  width: 65%;
+  height: 60%;
+  position: absolute;
+  bottom: 3rem;
+  right: 5rem;
+  z-index: -1;
+  border-radius: 3rem;
+  transform: rotate(20deg);
+}
+
+.features-1 .img-content::after {
+  content: "";
+  background: url(../../assets/img/pattern/dot4.svg);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -3rem;
+  right: 3rem;
+  z-index: -1;
+}
+
+.features-1 .img-content .img-up {
+  max-width: 80%;
+}
+
+@media (max-width:768px) {
+  .features-1 .img-content .img-up {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+  }
+}
+

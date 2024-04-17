@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - Brand</title>
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/Nunito.css">
+    <link rel="stylesheet" href="./assets/css/untitled.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script>
+
+const isLoggedIn = localStorage.getItem('isLoggedIn');
+if(isLoggedIn){
+    window.location.href='dashboard.html'
+}
+
+</script>
+</head>
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5" style="padding-top: 1em;padding-bottom: 1em;">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;./assets/img/31197174_7788048.jpg&quot;) center / contain no-repeat;"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Welcome to <br> CSE-Labs !</h4>
+                                    </div>
+                                    <form class="user" method="post">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="number" id="prn"  placeholder="Enter PRN No" name="prn" required=""></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password" required></div>
+                                        <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small">
+                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                            </div>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" >Login</button>
+                                        <hr>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center"><a href="./signup.html" class="small">Sign-Up Now</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bs-init.js"></script>
+    <script src="./assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+<!-- ... (your existing HTML) ... -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form.user').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Your login function
+            login();
+        });
+    });
+
+    function login() {
+        const prn = document.getElementById('prn').value;
+        const password = document.getElementById('password').value;
+
+        // Replace 'localhost:3000' with your actual API endpoint
+        const apiUrl = 'https://mini.growmediax.com/api/login';
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ prn, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            console.log(data);
+
+            // You can perform actions based on the response here
+            if (data.success) {
+              localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('PRN', prn);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful!',
+                    text: 'Redirecting to the dashboard ...',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                window.location.href='dashboard.html';
+                // Redirect or perform other actions as needed
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed!',
+                    text: 'Please check your credentials.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        });
+    }
+
+
+</script>
+</html>

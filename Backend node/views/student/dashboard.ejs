@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+<h1>Student Dashboard</h1>
+<!-- dashboard.ejs -->
+
+
+
+<!-- Lab Entry Section -->
+<div>
+    <h2>Lab Entry</h2>
+    <label for="labSelect">Select Lab:</label>
+    <select id="labSelect">
+        <option value="1">Lab 1</option>
+        <option value="2">Lab 2</option>
+        <option value="3">Lab 3</option>
+        <option value="4">Lab 4</option>
+    </select>
+    <button id="enterLabBtn">Enter Lab</button>
+</div>
+
+<!-- Lab Exit Section -->
+<div>
+    <h2>Lab Exit</h2>
+    <p>Currently in Lab: <span id="currentLab">None</span></p>
+    <form action="/student/exitLab" method="POST">
+        <button type="submit">Mark Out</button>
+    </form>
+</div>
+
+<table border>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% studentEntries.forEach(entry => { %>
+            <tr>
+                <td><%= entry.date %></td>
+                <td><%= entry.time_in %></td>
+                <td><%= entry.time_out %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+</body>
+<script>
+    // JavaScript code in your dashboard.ejs or a separate file
+
+document.addEventListener('DOMContentLoaded', () => {
+    const labSelect = document.getElementById('labSelect');
+    const enterLabBtn = document.getElementById('enterLabBtn');
+    const exitLabBtn = document.getElementById('exitLabBtn');
+    const currentLab = document.getElementById('currentLab');
+
+    let selectedLab = null;
+    function checkSessionLab() {
+        fetch('/student/checkLabStatus')
+        .then(response => response.text())
+        .then(data => {
+            if (data !== 'None') {
+                // Update the 'currentLab' display
+                currentLab.textContent = data;
+                // Show the "Exit Lab" button
+                exitLabBtn.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+    // Event listener for Lab Selection
+    labSelect.addEventListener('change', () => {
+        selectedLab = labSelect.value;
+    });
+
+    // Event listener for Enter Lab Button
+    enterLabBtn.addEventListener('click', () => {
+        if (selectedLab) {
+            // Make an AJAX call to /student/enterLab
+            fetch('/student/enterLab', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ lab: selectedLab })
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Update the 'labStatus' container with the result of the AJAX call
+               // labStatus.textContent = data;
+                // Update the 'currentLab' display
+                currentLab.textContent = selectedLab;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+});
+
+    // Event listener for Exit Lab Button
+    // exitLabBtn.addEventListener('click', () => {
+    //     window.location="/student/exitLab";
+    // });
+
+   
+
+
+</script>
+</html>
